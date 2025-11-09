@@ -108,31 +108,39 @@ public class UsaVehiculo implements ProcesaVehiculo {
                     System.out.println(mostrarVehiculo(vehiculos, placa));
                     break;
                 case "3":
-                    System.out.print("Placa: ");
-                    String pl = sc.nextLine();
-                    System.out.print("Modelo: ");
-                    String mod = sc.nextLine();
-                    System.out.print("Nombre propietario: ");
-                    String nom = sc.nextLine();
-                    System.out.print("Cedula (solo numeros): ");
-                    int ced = Integer.parseInt(sc.nextLine());
-                    System.out.print("Celular (solo numeros): ");
-                    int cel = Integer.parseInt(sc.nextLine());
-                    System.out.print("¿Con convenio? (s/n): ");
-                    String r = sc.nextLine();
-                    Propietario nuevoP = new Propietario(nom, ced, cel);
-                    if ("s".equalsIgnoreCase(r)) {
-                        System.out.print("Fecha afiliación (yyyy-MM-dd): ");
-                        String fecha = sc.nextLine();
-                        Vehiculo nuevoV = new VehiculoConConvenio(pl, mod, nuevoP, fecha);
-                        vehiculos.add(nuevoV);
-                    } else {
-                        System.out.print("Aseguradora (MAPFRE, SURA, ALLIANZ, SOLIDARIA, LIBERTY): ");
-                        String as = sc.nextLine();
-                        Vehiculo nuevoV = new VehiculoSinConvenio(pl, mod, nuevoP, as);
-                        vehiculos.add(nuevoV);
+                    try{
+                        System.out.print("Placa: ");
+                        String pl = sc.nextLine();
+                        System.out.print("Modelo: ");
+                        String mod = sc.nextLine();
+                        System.out.print("Nombre propietario: ");
+                        String nom = sc.nextLine();
+                        System.out.print("Cedula (solo numeros): ");
+                        int ced = Integer.parseInt(sc.nextLine());
+                        System.out.print("Celular (solo numeros): ");
+                        int cel = Integer.parseInt(sc.nextLine());
+                        System.out.print("¿Con convenio? (s/n): ");
+                        String r = sc.nextLine();
+                        Propietario nuevoP = new Propietario(nom, ced, cel);
+                        if ("s".equalsIgnoreCase(r)) {
+                            System.out.print("Fecha afiliación (yyyy-MM-dd): ");
+                            String fecha = sc.nextLine();
+                            Vehiculo nuevoV = new VehiculoConConvenio(pl, mod, nuevoP, fecha);
+                            vehiculos.add(nuevoV);
+                        } else {
+                            System.out.print("Aseguradora (MAPFRE, SURA, ALLIANZ, SOLIDARIA, LIBERTY): ");
+                            String as = sc.nextLine();
+                            Vehiculo nuevoV = new VehiculoSinConvenio(pl, mod, nuevoP, as);
+                            vehiculos.add(nuevoV);
+                        }
+                        System.out.println("Vehículo agregado.");
+                    } catch(NumberFormatException e){
+                        System.err.println("ERROR DE ENTRADA!!!!");
+                        System.err.println("Debe ingresar solo numeros para cedula o numero de celular");
+                    } catch(Exception e){
+                        System.err.println("ERROR DE REGISTRO!!!!");
+                        System.err.println("Ocurrio un error: " + e.getMessage());
                     }
-                    System.out.println("Vehículo agregado.");
                     break;
                 case "4":
                     System.out.print("Placa vehículo: ");
