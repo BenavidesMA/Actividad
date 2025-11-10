@@ -21,8 +21,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
         rbConConvenio.setSelected(true); // Seleccionar uno por defecto
-        txtAseguradora.setEnabled(false);
-        
+        cmbAseguradora.setEnabled(false);
+        rbConConvenio.setSelected(true);
+
+        rbSinConvenio.addActionListener(e -> cmbAseguradora.setEnabled(true));
+        rbSinConvenio.addActionListener(e -> txtFechaAfiliacion.setEnabled(false));
+
+        rbConConvenio.addActionListener(e -> cmbAseguradora.setEnabled(false));
+        rbConConvenio.addActionListener(e -> txtFechaAfiliacion.setEnabled(true));
         
         pnlDatosReparacion.setVisible(false);
     }
@@ -48,20 +54,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnBuscarPlaca = new javax.swing.JButton();
         lblEstadoVehiculo = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        pnlDatosReparacion = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        txtPlacaReparacion = new javax.swing.JTextField();
-        btnBuscarParareparar = new javax.swing.JButton();
-        lblVehiculoEncontrado = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        txtDescripcionRep = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        txtCostoRep = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        cmbEstadoRep = new javax.swing.JComboBox<>();
-        btnAgregarReparacion = new javax.swing.JButton();
-        lblMensajeReparacion = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txtModelo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -78,9 +70,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtFechaAfiliacion = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtAseguradora = new javax.swing.JTextField();
         btnRegistrarNuevo = new javax.swing.JButton();
         rbConConvenio = new javax.swing.JRadioButton();
+        cmbAseguradora = new javax.swing.JComboBox<>();
+        pnlDatosReparacion = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        txtPlacaReparacion = new javax.swing.JTextField();
+        btnBuscarParareparar = new javax.swing.JButton();
+        lblVehiculoEncontrado = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        txtDescripcionRep = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtCostoRep = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        cmbEstadoRep = new javax.swing.JComboBox<>();
+        btnAgregarReparacion = new javax.swing.JButton();
+        lblMensajeReparacion = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         cmbTipoReporte = new javax.swing.JComboBox<>();
         btnGenerarReporte = new javax.swing.JButton();
@@ -104,6 +110,80 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(txtModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 90, 30));
+
+        jLabel3.setText("Placa vehiculo:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
+
+        jLabel2.setText("Modelo vehiculo:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
+        jPanel1.add(lblPlacaNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 90, -1));
+
+        jLabel4.setText("Datos Propietario:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, -1, -1));
+
+        jLabel5.setText("Nombre:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, -1, -1));
+        jPanel1.add(txtNombreProp, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, 110, -1));
+
+        jLabel7.setText("N. Celular:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, -1, -1));
+        jPanel1.add(txtCelularProp, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 120, 110, -1));
+
+        jLabel8.setText("Cedula: ");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, -1, -1));
+        jPanel1.add(txtCedulaProp, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 110, -1));
+
+        buttonGroup1.add(rbSinConvenio);
+        rbSinConvenio.setText("No tiene convenio");
+        rbSinConvenio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbSinConvenioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbSinConvenio, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+
+        jLabel9.setText("Fecha afiliacion: ");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, -1, -1));
+
+        txtFechaAfiliacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaAfiliacionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtFechaAfiliacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, 120, 20));
+
+        jLabel6.setText("Aseguradora:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, -1, -1));
+
+        btnRegistrarNuevo.setText("Registrar Vehiculo");
+        btnRegistrarNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarNuevoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnRegistrarNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, 170, 50));
+
+        buttonGroup1.add(rbConConvenio);
+        rbConConvenio.setText("Tiene convenio");
+        rbConConvenio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbConConvenioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbConConvenio, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 120, 30));
+
+        cmbAseguradora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mapfre", "Sura", "Allianz", "Solidaria", "Liberty" }));
+        cmbAseguradora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbAseguradoraActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmbAseguradora, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 240, -1, -1));
+
+        jTabbedPane1.addTab("Pestaña 1", jPanel1);
+
         jLabel10.setText("Busqueda placa:");
 
         btnBuscarParareparar.setText("Buscar");
@@ -113,15 +193,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        lblVehiculoEncontrado.setText(".");
-
         jLabel11.setText("Descripcion:");
-
-        txtDescripcionRep.setText("jTextField1");
 
         jLabel12.setText("Costo: ");
 
-        txtCostoRep.setText("jTextField1");
         txtCostoRep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCostoRepActionPerformed(evt);
@@ -144,16 +219,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        lblMensajeReparacion.setText("jLabel14");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDescripcionRep, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -163,20 +236,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(txtCostoRep, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(59, 59, 59)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                            .addComponent(cmbEstadoRep, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbEstadoRep, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(217, 217, 217)
-                        .addComponent(btnAgregarReparacion, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(lblMensajeReparacion, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(138, Short.MAX_VALUE))
+                        .addGap(201, 201, 201)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAgregarReparacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblMensajeReparacion, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jLabel12)
@@ -189,9 +261,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(cmbEstadoRep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16)
                 .addComponent(btnAgregarReparacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(lblMensajeReparacion, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
+                .addGap(27, 27, 27)
+                .addComponent(lblMensajeReparacion, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout pnlDatosReparacionLayout = new javax.swing.GroupLayout(pnlDatosReparacion);
@@ -199,93 +271,38 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlDatosReparacionLayout.setHorizontalGroup(
             pnlDatosReparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDatosReparacionLayout.createSequentialGroup()
-                .addGroup(pnlDatosReparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlDatosReparacionLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPlacaReparacion, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBuscarParareparar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblVehiculoEncontrado, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlDatosReparacionLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(78, 78, 78)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(83, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosReparacionLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPlacaReparacion, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnBuscarParareparar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblVehiculoEncontrado, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(136, 136, 136))
         );
         pnlDatosReparacionLayout.setVerticalGroup(
             pnlDatosReparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDatosReparacionLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(pnlDatosReparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(txtPlacaReparacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarParareparar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblVehiculoEncontrado))
-                .addGap(28, 28, 28)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addGroup(pnlDatosReparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDatosReparacionLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlDatosReparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(txtPlacaReparacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscarParareparar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(51, 51, 51))
+                    .addComponent(lblVehiculoEncontrado, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jTabbedPane1.addTab("tab2", pnlDatosReparacion);
-
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(txtModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 90, 30));
-
-        jLabel3.setText("Placa vehiculo:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
-
-        jLabel2.setText("Modelo vehiculo:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
-        jPanel1.add(lblPlacaNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 90, -1));
-
-        jLabel4.setText("Datos Propietario:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
-
-        jLabel5.setText("Nombre:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, -1, -1));
-
-        txtNombreProp.setText("jTextField1");
-        jPanel1.add(txtNombreProp, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 110, -1));
-
-        jLabel7.setText("N. Celular:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, -1));
-
-        txtCelularProp.setText("jTextField1");
-        jPanel1.add(txtCelularProp, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 110, -1));
-
-        jLabel8.setText("Cedula: ");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, -1, -1));
-
-        txtCedulaProp.setText("jTextField1");
-        jPanel1.add(txtCedulaProp, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 110, -1));
-
-        buttonGroup1.add(rbSinConvenio);
-        rbSinConvenio.setText("No tiene convenio");
-        jPanel1.add(rbSinConvenio, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
-
-        jLabel9.setText("Fecha afiliacion: ");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, -1));
-        jPanel1.add(txtFechaAfiliacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 120, 20));
-
-        jLabel6.setText("Aseguradora:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, -1, -1));
-        jPanel1.add(txtAseguradora, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, 120, 20));
-
-        btnRegistrarNuevo.setText("Registrar Vehiculo");
-        btnRegistrarNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarNuevoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnRegistrarNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 170, 50));
-
-        buttonGroup1.add(rbConConvenio);
-        rbConConvenio.setText("Tiene convenio");
-        jPanel1.add(rbConConvenio, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 201, 120, 30));
-
-        jTabbedPane1.addTab("tab1", jPanel1);
+        jTabbedPane1.addTab("Pestaña 2", pnlDatosReparacion);
 
         cmbTipoReporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Listar todos los vehiculos", "Detalles de reparacion por placa", "Porcentaje de reparacion verificada" }));
 
@@ -305,16 +322,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(cmbTipoReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(102, 102, 102)
+                        .addComponent(cmbTipoReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
                         .addComponent(btnGenerarReporte))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(135, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,49 +338,43 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbTipoReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("reportes", jPanel2);
+        jTabbedPane1.addTab("Pestaña 3", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtPlacaBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblEstadoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnBuscarPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtPlacaBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(btnBuscarPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblEstadoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(186, 186, 186))
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblEstadoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPlacaBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBuscarPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblEstadoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPlacaBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscarPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(45, 45, 45)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -605,7 +614,7 @@ private void mostrarPorcentajeVerificadas() {
             nuevoVehiculo = new VehiculoConConvenio(placa, modelo, propietario, fechaAfiliacion);
             
         } else if (rbSinConvenio.isSelected()){ 
-            String aseguradora = txtAseguradora.getText().trim(); 
+                String aseguradora = (String)cmbAseguradora.getSelectedItem(); 
             // La clase VehiculoSinConvenio solo necesita la aseguradora
             if (aseguradora.isEmpty()) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Debe ingresar la Aseguradora para Sin Convenio.", 
@@ -635,6 +644,22 @@ private void mostrarPorcentajeVerificadas() {
                                       "Error General", javax.swing.JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_btnRegistrarNuevoActionPerformed
+
+    private void txtFechaAfiliacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaAfiliacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaAfiliacionActionPerformed
+
+    private void rbSinConvenioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSinConvenioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbSinConvenioActionPerformed
+
+    private void rbConConvenioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbConConvenioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbConConvenioActionPerformed
+
+    private void cmbAseguradoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAseguradoraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbAseguradoraActionPerformed
     
     private void limpiarCamposRegistro() {
     lblPlacaNueva.setText("");
@@ -643,10 +668,9 @@ private void mostrarPorcentajeVerificadas() {
     txtCedulaProp.setText("");
     txtCelularProp.setText("");
     txtFechaAfiliacion.setText("");
-    txtAseguradora.setText("");
     rbSinConvenio.setSelected(true);
     // Para que los campos se muestren y oculten correctamente al limpiar:
-    txtAseguradora.setEnabled(true);
+    cmbAseguradora.setEnabled(true);
     txtFechaAfiliacion.setEnabled(false); 
 }
     /**
@@ -681,6 +705,7 @@ private void mostrarPorcentajeVerificadas() {
     private javax.swing.JButton btnGenerarReporte;
     private javax.swing.JButton btnRegistrarNuevo;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cmbAseguradora;
     private javax.swing.JComboBox<String> cmbEstadoRep;
     private javax.swing.JComboBox<String> cmbTipoReporte;
     private javax.swing.JLabel jLabel1;
@@ -709,7 +734,6 @@ private void mostrarPorcentajeVerificadas() {
     private javax.swing.JRadioButton rbConConvenio;
     private javax.swing.JRadioButton rbSinConvenio;
     private javax.swing.JTextArea txtAreaReportes;
-    private javax.swing.JTextField txtAseguradora;
     private javax.swing.JTextField txtCedulaProp;
     private javax.swing.JTextField txtCelularProp;
     private javax.swing.JTextField txtCostoRep;
