@@ -14,6 +14,10 @@ import java.util.Scanner;
  */
 
 public class UsaVehiculo implements ProcesaVehiculo {
+
+    private static Runnable runnable() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     private ArrayList<Vehiculo> vehiculos;
 
     public UsaVehiculo() {
@@ -69,11 +73,14 @@ public class UsaVehiculo implements ProcesaVehiculo {
         }
         return "No se encontró vehículo con placa: " + placaBuscada;
     }
-
+    
+    public ArrayList<Vehiculo> getVehiculos() {
+        return vehiculos;
+    }
     /**
      * Buscar vehículo por placa (retorna null si no existe)
      */
-    private Vehiculo buscarPorPlaca(String placa) {
+    public Vehiculo buscarPorPlaca(String placa) {
         for (Vehiculo v : vehiculos) {
             if (v.getPlaca().equalsIgnoreCase(placa)) {
                 return v;
@@ -174,10 +181,17 @@ public class UsaVehiculo implements ProcesaVehiculo {
         sc.close();
     }
 
-    public static void main(String[] args) {
-        UsaVehiculo app = new UsaVehiculo();
-        // Ejecuta la consola para probar
-        app.iniciarConsola();
+   public static void main(String[] args) {
+        // Ya no se ejecuta la consola:
+        // UsaVehiculo app = new UsaVehiculo();
+        // app.iniciarConsola(); 
+
+        // Se lanza la ventana principal usando la Clase Anónima
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new VentanaPrincipal().setVisible(true);
+            }
+        });
     }
 }
-
